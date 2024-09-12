@@ -1,21 +1,29 @@
 #!/usr/bin/env python3
 """
-User model for user authentication service.
+Module User
 """
-
-from sqlalchemy import Column, String, Integer, create_engine
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String
 
+# Create a base class for declarative class definitions
 Base = declarative_base()
 
 
 class User(Base):
-    """
-    SQLAlchemy User model for users table.
+    """ Definition of class User
+    SQLAlchemy model User
+
+    Args:
+        Base (_type_): _description_
     """
     __tablename__ = 'users'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    email = Column(String(250), nullable=False, unique=True)
+
+    # Define columns in the 'users' table
+    id = Column(Integer, primary_key=True)
+    email = Column(String(250), nullable=False)
+    # Non-nullable string column for hashed password
     hashed_password = Column(String(250), nullable=False)
-    session_id = Column(String(250), nullable=True)
-    reset_token = Column(String(250), nullable=True)
+    # Nullable string column for session ID
+    session_id = Column(String(250))
+    # Nullable string column for reset token
+    reset_token = Column(String(250))
